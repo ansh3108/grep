@@ -1,14 +1,19 @@
-use std::{print, println};
-use std::io;
-use std::io::Write;
+use std::env;
+use std::fs;
+use std::println;
 
 fn main() {
-    loop {
-        println!("You are in a dark room");
-        print!("> ");
-        io::stdout().flush().unwrap();
-        let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Failed to read line");
-        print!("You typed {}\n", input.trim().to_lowercase());
-    }
+    let args: Vec<String> = env::args().collect();
+    println!("Raw arguments: {:?}", args);
+
+    let query = &args[1];
+    let file_path = &args[2];
+    
+    println!("Searching for: {}", query);
+    println!("In file: {}", file_path);
+
+    let contents = fs::read_to_string(file_path)
+        .expect("Should've been able to read the file!");
+
+    println!("With text:\n{}", contents);
 }
