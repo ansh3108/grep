@@ -1,6 +1,5 @@
 use std::env;
 use std::fs;
-use std::println;
 use std::process;
 
 struct Config {
@@ -57,5 +56,5 @@ fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
         }
     }   
 
-    return results
+    results
 }
